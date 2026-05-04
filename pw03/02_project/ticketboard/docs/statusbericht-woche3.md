@@ -7,13 +7,13 @@ Klasse: <Klasse>
 
 ## Umgesetzte Arbeiten
 
--
+- pw03
 
 ---
 
 ## Aktueller Stand
 
--
+- Erledigt
 
 ---
 
