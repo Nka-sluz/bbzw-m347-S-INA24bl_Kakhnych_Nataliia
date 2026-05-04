@@ -1,1 +1,38 @@
-todo
+services:
+
+  api:
+    build: .
+    container_name: ticketboard-api
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+  
+  db:
+    image: postgres:16-alpine
+    env_file:
+      - .env
+    container_name: ticketboard-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    container_name: ticketboard-adminer
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build: ./frontend
+    container_name: ticketboard-frontend
+    ports:
+      - "8000:8000"
+
+volumes:
+  postgres_data:
